@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -6,8 +7,10 @@ import Register from "./pages/Register";
 import { useState } from "react";
 
 function App() {
-  const [loggedinUsername, setLoggedInUsername] = useState("");
-  const [loggedinUserId, setLoggedInUserId] = useState("");
+  const [loggedinUsername, setLoggedInUsername] = useState<string>(
+    localStorage.getItem("username") || ""
+  );
+  const [loggedinUserId, setLoggedInUserId] = useState<string>("");
 
   return (
     <div className="App">

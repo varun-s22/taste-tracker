@@ -1,8 +1,7 @@
-const loginHandler = async (username, password) => {
+const loginHandler = async (username: string, password: string) => {
   const params = new URLSearchParams({
     view: "Grid view",
-    filterByFormula: `username="${username}"`,
-    filterByFormula: `password="${password}"`,
+    filterByFormula: `AND(username="${username}",password="${password}")`,
   });
   const response = await fetch(
     `https://api.airtable.com/v0/${process.env.REACT_APP_LOGIN_ID}/credenitals?` +
@@ -22,4 +21,10 @@ const loginHandler = async (username, password) => {
     console.log(error);
   }
 };
-export default loginHandler;
+
+const logoutHandler = async () => {
+  if (localStorage.getItem("username")) {
+    localStorage.removeItem("username");
+  }
+};
+export { loginHandler, logoutHandler };

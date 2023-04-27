@@ -1,6 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import { logoutHandler } from "../utils";
 
-function Home(props) {
+type HomeProps = {
+  loggedinUserId: string;
+  loggedinUsername: string;
+};
+function Home(props: HomeProps) {
   return (
     <div>
       <h1>Home</h1>
@@ -9,6 +15,7 @@ function Home(props) {
       <Link to="/register">Register</Link>
       <br></br>
       LoggedInUser: {props.loggedinUsername}
+      <button onClick={logoutHandler}>Logout</button>
     </div>
   );
 }
