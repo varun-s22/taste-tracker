@@ -1,4 +1,10 @@
-const loginHandler = async (username: string, password: string) => {
+const loginHandler = async (
+  username: string | undefined,
+  password: string | undefined
+) => {
+  if (!username || !password) {
+    return { message: "Something went wrong" };
+  }
   const params = new URLSearchParams({
     view: "Grid view",
     filterByFormula: `AND(username="${username}",password="${password}")`,
@@ -16,7 +22,9 @@ const loginHandler = async (username: string, password: string) => {
   );
   try {
     const data = await response.json();
-    return data.records?.length > 0 ? data.records[0] : {};
+    return data.records?.length > 0
+      ? data.records[0]
+      : { message: "Incorrect credentials" };
   } catch (error) {
     console.log(error);
   }

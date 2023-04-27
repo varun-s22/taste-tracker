@@ -1,21 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { logoutHandler } from "../utils";
+import Navbar from "../components/Navbar";
+import InputField from "../components/InputField";
 
-type HomeProps = {
-  loggedinUserId: string;
-  loggedinUsername: string;
-};
-function Home(props: HomeProps) {
+function Home() {
+  const searchRestrauntHandler = () => {
+    console.log("Searching restraunt");
+  };
   return (
     <div>
+      <Navbar />
       <h1>Home</h1>
-      <Link to="/login">Login</Link>
-      <br></br>
-      <Link to="/register">Register</Link>
-      <br></br>
-      LoggedInUser: {props.loggedinUsername}
-      <button onClick={logoutHandler}>Logout</button>
+      <InputField placeholder="Search restraunts" />
+      <button onClick={searchRestrauntHandler}>Search</button>
     </div>
   );
 }
