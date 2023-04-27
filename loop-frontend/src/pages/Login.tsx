@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginHandler } from "../utils";
 import InputField from "../components/InputField";
 import LoginContext from "../contexts/loginContext";
+import Navbar from "../components/Navbar";
 
 function Login() {
   const userNameRef = React.useRef<HTMLInputElement>(null);
@@ -27,6 +28,7 @@ function Login() {
   };
   return (
     <div>
+      <Navbar />
       <InputField
         label="Username"
         id="username"
@@ -42,7 +44,6 @@ function Login() {
       />
       <button onClick={login}>Login</button>
       <p>{errorMessage}</p>
-      <Link to="/">Home</Link>
     </div>
   );
 }

@@ -12,9 +12,9 @@ function Navbar() {
   };
   return (
     <div>
-      <Link to="/login">Login</Link>
+      <Link to="/">Home</Link>
       <br></br>
-      <Link to="/register">Register</Link>
+      <Link to="/login">Login</Link>
       <br></br>
       LoggedInUser: {username}
       {isLoggedIn ? <button onClick={logout}>Logout</button> : null}
