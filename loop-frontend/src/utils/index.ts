@@ -44,7 +44,38 @@ const getCookie = (key: string) => {
   });
   return cookie?.split("=")[1];
 };
+
 const deleteCookie = (key: string) => {
   document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
-export { loginHandler, logoutHandler, setCookie, deleteCookie, getCookie };
+
+const restrauntsList = async () => {
+  const params = new URLSearchParams({
+    view: "Grid view",
+  });
+  try {
+    const response = await fetch(
+      `https://api.airtable.com/v0/${process.env.REACT_APP_LOGIN_ID}/restaurants?` +
+        params,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.REACT_APP_BEARER_TOKEN}`,
+        },
+      }
+    );
+    const data = await response.json();
+    return data.records;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export {
+  loginHandler,
+  logoutHandler,
+  setCookie,
+  deleteCookie,
+  getCookie,
+  restrauntsList,
+};
