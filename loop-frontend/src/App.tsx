@@ -6,10 +6,13 @@ import Login from "./pages/Login";
 import Bookmarks from "./pages/Bookmarks";
 import { useState } from "react";
 import LoginContext from "./contexts/loginContext";
+import bookmarkContext from "./contexts/bookmarkContext";
+import { getCookie } from "./utils";
 function App() {
   const [loggedinUsername, setLoggedInUsername] = useState<string | undefined>(
-    localStorage.getItem("username") || undefined
+    getCookie("username") || undefined
   );
+  const [bookmarkedMaps, setBookmarkedMaps] = useState<string[]>([]);
   return (
     <div className="App">
       <LoginContext.Provider
@@ -20,13 +23,17 @@ function App() {
           setUserName: setLoggedInUsername,
         }}
       >
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/bookmarks" element={<Bookmarks />} />
-          </Routes>
-        </Router>
+        <bookmarkContext.Provider
+          value={{ bookmarks: bookmarkedMaps, setBookmarks: setBookmarkedMaps }}
+        >
+          <Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/bookmarks" element={<Bookmarks />} />
+            </Routes>
+          </Router>
+        </bookmarkContext.Provider>
       </LoginContext.Provider>
     </div>
   );

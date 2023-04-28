@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { loginHandler } from "../utils";
+import { useNavigate } from "react-router-dom";
+import { loginHandler, setCookie } from "../utils";
 import InputField from "../components/InputField";
 import LoginContext from "../contexts/loginContext";
 import Navbar from "../components/Navbar";
@@ -23,7 +23,7 @@ function Login() {
       return;
     }
     setUserName(data?.fields?.username);
-    localStorage.setItem("username", data.fields.username);
+    setCookie("username", data.fields.username);
     navigateTo("/");
   };
   return (

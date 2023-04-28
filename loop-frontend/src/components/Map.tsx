@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
+import bookmarkContext from "../contexts/bookmarkContext";
+import { setCookie } from "../utils";
+
 type MapProps = {
   restrauntName: string;
-  bookMarkedMaps: string[];
-  setBookmarkedMaps: (value: string[]) => void;
 };
 function Map(props: MapProps) {
+  const { bookmarks, setBookmarks } = useContext(bookmarkContext);
   const bookmarkHandler = () => {
-    props.setBookmarkedMaps([...props.bookMarkedMaps, props.restrauntName]);
+    setBookmarks([...bookmarks, props.restrauntName]);
+    setCookie("bookmarks", JSON.stringify(bookmarks));
   };
-
+  const removeFromBookmarks = () => {
+    setBookmarks(
+      bookmarks.filter((bookmark) => bookmark !== props.restrauntName)
+    );
+    setCookie("bookmarks", JSON.stringify(bookmarks));
+  };
   return (
     <div>
       <iframe
@@ -20,7 +28,7 @@ function Map(props: MapProps) {
         sandbox="allow-scripts allow-same-origin"
       ></iframe>
       <button onClick={bookmarkHandler}>Bookmark</button>
-      <button>Remove from Bookmarks</button>
+      <button onClick={removeFromBookmarks}>Remove from Bookmarks</button>
     </div>
   );
 }

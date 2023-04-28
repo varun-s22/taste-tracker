@@ -31,8 +31,20 @@ const loginHandler = async (
 };
 
 const logoutHandler = async () => {
-  if (localStorage.getItem("username")) {
-    localStorage.removeItem("username");
-  }
+  deleteCookie("username");
 };
-export { loginHandler, logoutHandler };
+
+const setCookie = (key: string, value: string) => {
+  document.cookie = `${key}=${value}`;
+};
+
+const getCookie = (key: string) => {
+  const cookie = document.cookie.split(";").find((cookie) => {
+    return cookie.includes(key);
+  });
+  return cookie?.split("=")[1];
+};
+const deleteCookie = (key: string) => {
+  document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+};
+export { loginHandler, logoutHandler, setCookie, deleteCookie, getCookie };
