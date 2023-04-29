@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@700&display=swap');
 .App {
   text-align: center;
 }
@@ -35,4 +36,94 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.heading-div{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 150px;
+  margin-left: -210px;
+}
+.heading{
+  font-family: 'Mali', cursive;
+  color: #f0f5f1;
+  font-size: 150px;
+  margin-bottom: -50px;
+}
+.sidebar{
+  padding-top: 30px;
+  background-color: #f1f1f1;
+  height: 100%;
+  width: 17vw;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  color: white;
+  grid-area: sidebar;
+}
+.body-content{
+  grid-area: body;
+}
+.home-div{
+  display: grid;
+  grid-template-areas: "sidebar body";
+  background: #252625;
+  min-height: 100vh;
+  color: #f1f1f1;
+}
+
+.sidebar-link{
+  color: #818181;
+  text-decoration: none;
+  padding: 10px;
+  font-size: 25px;
+}
+.sidebar-link:hover{
+  color: black;
+}
+.home-body{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  font-family: 'Mali', cursive;
+  width: 50vw;
+  font-size: 30px;
+  color:#f0f5f1;
+  flex-direction: column;
+  margin-left: 150px;
+  padding-top: 200px;
+}
+.subheading{
+  font-size: 50px;
+  color: #f0f5f1;
+  font-family: 'Mali', cursive;
+}
+.input-field{
+  border: 2px solid #f0f5f1;
+  border-radius: 40px;
+  padding: 10px;
+  width: 50vw;
+  font-size: 18px;
+  margin-left: 150px;
+}
+.list-suggestions{
+  background-color: grey;
+}
+.list-suggestions:hover{
+  background-color: black;
+}
+.error-msg{
+  color: red;
+  font-size:25px;
+  padding: 30px;
+}
+iframe{
+  /* style iframe in presentable manner */
+  border: 2px solid #f0f5f1;
+  border-radius: 80px;
+  padding: 20px;
+  width: 50vw;
+  font-size: 18px;
 }
