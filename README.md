@@ -1,5 +1,8 @@
-# Restaurant Dashboard
+# taste tracker
 
-This a dummy restaurant dashboard, made for Loop, as their assignment.
+A Restraunt Dashboard website, built primarly using React and TypeScript.
 
-This is currently WIP 🚧
+This is only the client-side, and has no server/back-end supporting it.
+All the data(to be sent/saved in sessions are stored in cookies)
+
+> Note: This was built as a part of assignment for Loop.
