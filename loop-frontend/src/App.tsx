@@ -10,9 +10,11 @@ import bookmarkContext from "./contexts/bookmarkContext";
 import { getCookie } from "./utils";
 function App() {
   const [loggedinUsername, setLoggedInUsername] = useState<string | undefined>(
-    getCookie("username") || undefined
+    JSON.parse(getCookie("cookie") || JSON.stringify(""))?.user || undefined
   );
-  const [bookmarkedMaps, setBookmarkedMaps] = useState<string[]>([]);
+  const [bookmarkedMaps, setBookmarkedMaps] = useState<string[]>(
+    JSON.parse(getCookie("cookie") || JSON.stringify(""))?.bookmarks || []
+  );
   return (
     <div className="App">
       <LoginContext.Provider

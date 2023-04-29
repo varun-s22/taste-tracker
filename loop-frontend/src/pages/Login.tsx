@@ -23,7 +23,14 @@ function Login() {
       return;
     }
     setUserName(data?.fields?.username);
-    setCookie("username", data.fields.username);
+    setCookie(
+      "cookie",
+      JSON.stringify({
+        user: data.fields.username,
+        homePageMaps: [],
+        bookmarks: [],
+      })
+    );
     navigateTo("/");
   };
   return (

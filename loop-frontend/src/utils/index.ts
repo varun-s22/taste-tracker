@@ -31,7 +31,11 @@ const loginHandler = async (
 };
 
 const logoutHandler = async () => {
-  deleteCookie("username");
+  let cookie = JSON.parse(getCookie("cookie") || "{}");
+  if (cookie) {
+    cookie = { ...cookie, user: "" };
+  }
+  setCookie("cookie", JSON.stringify(cookie));
 };
 
 const setCookie = (key: string, value: string) => {
@@ -43,10 +47,6 @@ const getCookie = (key: string) => {
     return cookie.includes(key);
   });
   return cookie?.split("=")[1];
-};
-
-const deleteCookie = (key: string) => {
-  document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
 
 const restrauntsList = async () => {
@@ -71,11 +71,4 @@ const restrauntsList = async () => {
     console.log(error);
   }
 };
-export {
-  loginHandler,
-  logoutHandler,
-  setCookie,
-  deleteCookie,
-  getCookie,
-  restrauntsList,
-};
+export { loginHandler, logoutHandler, setCookie, getCookie, restrauntsList };

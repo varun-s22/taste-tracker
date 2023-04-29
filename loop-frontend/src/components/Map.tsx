@@ -1,21 +1,31 @@
 import React, { useContext } from "react";
 import bookmarkContext from "../contexts/bookmarkContext";
 import { setCookie } from "../utils";
+import LoginContext from "../contexts/loginContext";
 
 type MapProps = {
   restrauntName: string;
 };
 function Map(props: MapProps) {
   const { bookmarks, setBookmarks } = useContext(bookmarkContext);
+  const { username } = useContext(LoginContext);
   const bookmarkHandler = () => {
-    setBookmarks([...bookmarks, props.restrauntName]);
-    setCookie("bookmarks", JSON.stringify(bookmarks));
+    const updatedBookmarks = [...bookmarks, props.restrauntName];
+    setBookmarks(updatedBookmarks);
+    setCookie(
+      "cookie",
+      JSON.stringify({ user: username, bookmarks: updatedBookmarks })
+    );
   };
   const removeFromBookmarks = () => {
-    setBookmarks(
-      bookmarks.filter((bookmark) => bookmark !== props.restrauntName)
+    const updatedBookmarks = bookmarks.filter(
+      (bookmark) => bookmark !== props.restrauntName
     );
-    setCookie("bookmarks", JSON.stringify(bookmarks));
+    setBookmarks(updatedBookmarks);
+    setCookie(
+      "cookie",
+      JSON.stringify({ user: username, bookmarks: updatedBookmarks })
+    );
   };
   return (
     <div>
