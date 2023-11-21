@@ -9,11 +9,7 @@ All the data(to be sent/saved in sessions are stored in cookies)
 
 To run this locally,
 
-- First go to the `loop-frontend` directory, either by manually opening the folder, or by
-
-        cd loop-frontend
-
-This is the root folder for React App.
+- Go to the root folder for React App.
 
 - Install the packages using
 
@@ -22,7 +18,3 @@ This is the root folder for React App.
 - Run the website using
 
         npm start
-
-For the deployed version, visit [here](https://loop-assignment.vercel.app/)
-
-> Note: This was built as a part of assignment for Loop.
